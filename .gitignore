@@ -1,32 +1,97 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main(){
+	 ifstream in("C:\Users\戴尔\Desktop\学生信息.txt");
+	{
+		struct{
+			char name1[50];
+			int  number[50];     //学号 
+			char  colleage[50];  //学院 
+			char  speciality[50];  //专业 
+			
+		};
+		int i;
+		for(i=0;i<50;i++;)
+		{
+			in>>name1[i]>>xueyuan[i]>>zhuanye[i]>>colleage[i];
+		}
+		for(i=0;i<50;i++)
+		{
+			cout<<name[i];
+		}
+		in.close();
+	}
+	ifstream in ("C:\Users\戴尔\Desktop\裁判信息.txt");
+	{
+		struct{
+			char name2[7];
+			int score[3][7];
+			int ave[3];
+		};
+		int l,j,t=0,k,sum=0,h,a=0;
+		for(l=0;l<7;l++)
+		{
+			in>>name2[l];
+		}
+		for(j=0;j<3;j++)
+		{
+			for(k=0;k<7;k++)
+			{
+				in>>score[j][k];
+				if(t<score[j][k])
+				{
+					
+					t=score[j][k];
+					score[j][k]=score[j][k+1];
+					score[j][k+1]=t;
+				 } 
+			}
+			for(j=0;j<3;j++)
+			{
+				for(k=1;k<6;k++)
+				{
+					sum=sum+score[j][k];
+				}
+				for(h=0;h<3;h++)
+				{
+					ave[h]=sum/5;
+					if(a<ave[h])
+					{
+						a=ave[h];
+						ave[h]=ave[h+1];
+						ave[h+1]=a;
+					}
+				} 
+				sum=0;
+				 
+			}
+		 } 
+	}
+	ofstream output("C:\Users\戴尔\Desktop\最终成绩.txt");
+	{
+		for(i=0;i<3;i+=)
+		{
+			output<<" "<<name1[i]<<" ";
+		} 
+		output<<endl; 
+		for(l=0;l<7;l++)
+		{
+			output<<name2[l]<<" ";
+			for(j=0;j<3;j++)
+		{
+			for(k=0;k<7;k++)
+			{
+				output<<score[j][k]<<" ";	
+			}
+		}
+		for(h=0;h<3;h++)
+		{
+			output<<ave[h]<<" "<<h<<endl; 
+		}
+		
+	}
+	return 0;
+	
+} 
+ 
